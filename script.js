@@ -27,9 +27,9 @@ const displayHighScore = function (highscore) {
     highsco.textContent = highscore;
 }
 
-const displaySecretNumber = function (secretnumber, numberwidth) {
+const displaySecretNumber = function (secretnumber, numberpad) {
     num.textContent = secretnumber;
-    num.style.width = numberwidth;
+    num.style.padding = numberpad;
 }
 
 const changeBackground = function (backgroundcolor) {
@@ -52,10 +52,10 @@ checkBtn.addEventListener('click', function () {
         // When player wins
     } else if (guess === secretNumber) {
         displayMessage('Correct Number 🎉');
-        displaySecretNumber(secretNumber, '30rem');
+        displaySecretNumber(secretNumber, '2rem 5rem');
         changeBackground('#60b347');
         gues.setAttribute('disabled', '');
-        checkBtn.setAttribute('disabled','');
+        checkBtn.setAttribute('disabled', '');
         checkBtn.style.cursor = 'not-allowed';
 
         // Setting highscore
@@ -75,6 +75,8 @@ checkBtn.addEventListener('click', function () {
         } else {
             displayMessage('💥 You lost the game!');
             score--;
+            checkBtn.setAttribute('disabled', '');
+            checkBtn.style.cursor = 'not-allowed';
         }
     }
     displayScore(score);
@@ -89,7 +91,7 @@ againBtn.addEventListener('click', function () {
     gues.value = '';
     changeBackground('#222');
     displayScore(score);
-    displaySecretNumber('?', '15rem');
+    displaySecretNumber('?', '2rem 3rem');
     gues.removeAttribute('disabled');
     checkBtn.removeAttribute('disabled');
     checkBtn.style.cursor = 'pointer';
